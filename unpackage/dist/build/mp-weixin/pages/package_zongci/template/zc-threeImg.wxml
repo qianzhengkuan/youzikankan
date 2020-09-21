@@ -1,0 +1,1 @@
+<view class="zc-img"><view class="flex-box flex-left-right-between"><image class="img-372" src="{{img}}" mode="aspectFill"></image><view class="zc-img-right flex-box flex-column flex-left-right-between"><image src="{{img}}" mode></image><image src="{{img}}" mode></image></view></view></view>

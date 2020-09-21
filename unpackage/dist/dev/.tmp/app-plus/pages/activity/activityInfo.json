@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "活动详情",
+  "usingComponents": {
+    "yzkk-image": "/pages/template/yzkk-image"
+  }
+}

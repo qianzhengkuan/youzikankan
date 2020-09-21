@@ -1,0 +1,12 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "panel-top": "/template/panel-top",
+    "text-new": "/template/textNew",
+    "new-list": "/template/newsList",
+    "big-cover": "/template/bigCover",
+    "three-new": "/template/three",
+    "has-con-new": "/template/hasConNew",
+    "four-list": "/pages/tabbar/template/four-list"
+  }
+}

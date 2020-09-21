@@ -1,0 +1,18 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "refresh": "/pages/tabbar/components/refresh",
+    "ccq-refresh": "/pages/tabbar/components/ccq-refresh/ccq-refresh",
+    "ccq-load-more": "/pages/tabbar/components/ccq-refresh/ccq-load-more",
+    "new-list": "/template/newsList",
+    "text-new": "/template/textNew",
+    "three-new": "/template/three",
+    "big-cover": "/template/bigCover",
+    "yzkk-video": "/template/video",
+    "activity-list": "/template/activityList",
+    "yzkk-photo": "/template/photos",
+    "no-more": "/template/noMore",
+    "no-data": "/template/noData",
+    "app-video": "/template/app-video"
+  }
+}

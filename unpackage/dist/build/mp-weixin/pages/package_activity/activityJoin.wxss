@@ -1,0 +1,1 @@
+uni-page-body, .container{height:100%}.joinNow{margin:25rpx auto}.form-list{height:88rpx;padding:0rpx 30rpx;line-height:88rpx;-webkit-box-sizing:border-box;box-sizing:border-box;background-color:#fff}.form-list .label{min-width:138rpx}.form-list .label text{font-size:30rpx;font-weight:800}.form-list input{text-align:right;font-size:30rpx}

@@ -1,0 +1,1 @@
+<view class="container"><block wx:for="{{activityList}}" wx:for-item="item" wx:for-index="index" wx:key="index"><view><activity-list vue-id="{{'366435fb-1-'+index}}" shData="{{item}}" bind:__l="__l"></activity-list></view></block><block wx:if="{{noMore}}"><no-more vue-id="366435fb-2" bind:__l="__l"></no-more></block></view>

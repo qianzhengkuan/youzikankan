@@ -1,0 +1,1 @@
+.list-wrap .item{height:150rpx;padding:34rpx;-webkit-box-sizing:border-box;box-sizing:border-box;background-color:#fff}.list-wrap .item image{width:94rpx;height:94rpx;margin-right:20rpx;border-radius:50%}.list-wrap .item .name{font-weight:800;font-size:32rpx}.list-wrap .item .gray-text{font-size:26rpx;color:#999}.list-wrap .item .bottom-text{width:400rpx}

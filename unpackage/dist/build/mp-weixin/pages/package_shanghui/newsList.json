@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "商会资讯",
+  "usingComponents": {
+    "zc-top": "/pages/package_zongci/template/zc-top",
+    "panel-top": "/template/panel-top",
+    "text-new": "/template/textNew",
+    "new-list": "/template/newsList",
+    "big-cover": "/template/bigCover",
+    "three-new": "/template/three",
+    "has-con-new": "/template/hasConNew"
+  }
+}

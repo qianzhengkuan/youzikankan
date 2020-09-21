@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "全部僧人",
+  "usingComponents": {
+    "zc-people": "/pages/package_zongci/template/zc-people"
+  }
+}

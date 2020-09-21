@@ -1,0 +1,1 @@
+page, .container{background-color:#f3f3f5}.set-item{background-color:#fff;padding:0 30rpx;height:98rpx;line-height:98rpx;-webkit-box-sizing:border-box;box-sizing:border-box}.set-item text{font-size:30rpx;color:#a7a7a7}.set-item .label{color:#000}.lineJianTou::after{right:45rpx}

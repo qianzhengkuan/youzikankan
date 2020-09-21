@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "图片详情",
+  "usingComponents": {
+    "pinglun": "/pages/package_new/template/pinglun",
+    "pinglun-panel": "/pages/package_new/template/pinglun-panel"
+  }
+}

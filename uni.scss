@@ -1,0 +1,50 @@
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+
+/* 颜色变量 */
+$yzkk-theme-color:#C34944;//主题颜色
+$yzkk-body-gray-color:#F3F3F5;//浅灰色背景颜色
+$yzkk-submitBtn-color:#E56361;//提交按钮颜色
+$yzkk-gray-text:#999999;//灰色
+$yzkk-btn-hover-color:#f39a98;
+// 自定义头部样式
+
+
+// 新闻类资讯
+$yzkk-news-title:36rpx;
+$yzkk-news-title-line-hei:46rpx;
+$yzkk-news-pad:30rpx;
+
+// 列表类图片大小
+$yzkk-news-list-img-width:218rpx;
+$yzkk-news-list-img-height:170rpx;
+// 一张图片加一个标题
+$yzkk-news-bigcover-img-width:690rpx;
+$yzkk-news-bigcover-img-height:354rpx;
+// 三张图片并排
+$yzkk-news-three-img-width:223rpx;
+$yzkk-news-three-img-height:180rpx;
+// 含有内容及评论、转发、点赞等操作
+$yzkk-news-hasCon-img-width:334rpx;
+$yzkk-news-hasCon-img-height:252rpx;
+
+// 文章内容字体大小
+$yzkk-news-28rpx:28rpx;
+$yzkk-news-26rpx:26rpx;
+$yzkk-news-24rpx:24rpx;
+
+// 评论、转发、点赞
+$yzkk-news-optIcon:36rpx;
+
+

@@ -1,0 +1,15 @@
+{
+  "navigationStyle": "custom",
+  "disableScroll": true,
+  "usingComponents": {
+    "text-new": "/pages/template/textNew",
+    "new-list": "/pages/template/newsList",
+    "big-cover": "/pages/template/bigCover",
+    "three-new": "/pages/template/three",
+    "has-con-new": "/pages/template/hasConNew",
+    "refresh": "/components/refresh",
+    "yzkk-video": "/pages/template/video",
+    "yzkk-photo": "/pages/template/photos",
+    "activity-list": "/pages/template/activityList"
+  }
+}

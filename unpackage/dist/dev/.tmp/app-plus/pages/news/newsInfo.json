@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "",
+  "usingComponents": {
+    "jyf-parser": "/components/jyf-parser/jyf-parser",
+    "pinglun": "/pages/template/pinglun",
+    "pinglun-panel": "/pages/template/pinglun-panel"
+  }
+}

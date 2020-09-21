@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<title>
+			<%= htmlWebpackPlugin.options.title %>
+		</title>
+		<meta name="keywords" content="游子看看，游子，安溪，闽南，寺庙">
+		<meta name="description" content="<%= htmlWebpackPlugin.options.title %>">
+		<meta name="model_url" content="http://h5.youzikankan.com/">
+		<script type="text/javascript">
+			//判断访问终端
+			// var browser = {
+			// 	versions: function() {
+			// 		var u = navigator.userAgent,
+			// 			app = navigator.appVersion;
+			// 		return {
+			// 			trident: u.indexOf('Trident') > -1, //IE内核
+			// 			presto: u.indexOf('Presto') > -1, //opera内核
+			// 			webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+			// 			gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+			// 			mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+			// 			ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+			// 			android: u.indexOf('Android') > -1 || u.indexOf('Adr') > -1, //android终端
+			// 			iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器
+			// 			iPad: u.indexOf('iPad') > -1, //是否iPad
+			// 			webApp: u.indexOf('Safari') == -1, //是否web应该程序，没有头部与底部
+			// 			weixin: u.indexOf('MicroMessenger') > -1, //是否微信 （2015-01-22新增）
+			// 			qq: u.match(/\sQQ/i) == " qq" //是否QQ
+			// 		};
+			// 	}(),
+			// 	language: (navigator.browserLanguage || navigator.language).toLowerCase()
+			// }
+
+			// 百度收录返回的链接地址
+			// https://www.baidu.com/link?url=h9FV3JFqlTnH5JcTzlTUU7TFkEIgvUmhaUTFOZT1gRZU6imocabu8hNfmcraDkBVjqcK0LVZT1zIYPzMo9vC8lIiNZM1jyl_wxQ6EYVyfuu&wd=&eqid=de760614001fb650000000065f125b88
+			// http://www.youzikankan.com/index/index/newinfo/id/1351.html //文章
+
+			// var search = window.location.href;
+			// console.log(search)
+			// var dff = search.indexOf('www.youzikankan.com/index/index/newinfo/id/')
+			// console.log(dff)
+			// if (dff != -1) {
+			// 	var url = search.match(/id(\S*)/)[1];
+			// 	console.log(url) ///index/newinfo/id/1369.html
+			// 	var dd = url.match(/(\S*).html/)[1];
+			// 	console.log(dd)
+
+			// 	var queryVal1 = dd.split("/")[1];
+			// 	console.log(queryVal1)
+			// 	if (browser.versions.mobile || browser.versions.android || browser.versions.ios) {
+			// 		// alert("移动端"); 	
+			// 		location.href = "http://h5.youzikankan.com/pages/package_new/newsInfo?id=" + queryVal1 + "&isShare=1&isShare=0";
+			// 		//测试
+			// 		// location.href = "http://testh5.youzikankan.com/pages/package_new/newsInfo?id=" + queryVal1 + "&isShare=1&isShare=0";	
+			// 	} else {
+			// 		// alert("PC端"); 
+			// 		location.href = "http://www.youzikankan.com/index/index/newinfo/id/" + queryVal1 + ".html";
+			// 		//测试
+			// 		// location.href = "http://testfas.youzikankan.com/index/index/newinfo/id/" + queryVal1 + ".html";
+			// 	}
+			// } else {
+			// 	location.href = "http://h5.youzikankan.com"
+			// }
+		</script>
+
+
+
+		<style>
+			::-webkit-scrollbar{
+                display: none;
+            }
+        </style>
+		<script type="text/javascript">
+			document.write(unescape(
+				"%3Cspan style='display:none' id='cnzz_stat_icon_1279066220'%3E%3C/span%3E%3Cscript src='https://s9.cnzz.com/stat.php%3Fid%3D1279066220' type='text/javascript'%3E%3C/script%3E"
+			));
+		</script>
+		<!-- 正式发布的时候使用，开发期间不启用。↑ -->
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+				document.documentElement.style.fontSize = document.documentElement.clientWidth / 20 + 'px'
+			})
+		</script>
+		<link rel="stylesheet" href="<%= BASE_URL %>static/index.css" />
+	</head>
+	<body>
+		<!-- 该文件为 H5 平台的模板 HTML，并非应用入口。 -->
+		<!-- 请勿在此文件编写页面代码或直接运行此文件。 -->
+		<!-- 详见文档：https://uniapp.dcloud.io/collocation/manifest?id=h5-template -->
+		<noscript>
+			<strong>Please enable JavaScript to continue.</strong>
+		</noscript>
+		<div id="app"></div>
+		<!-- built files will be auto injected -->
+		<script>
+			/*BAIDU_STAT*/
+		</script>
+	</body>
+</html>

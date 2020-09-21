@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "我的收藏",
+  "usingComponents": {
+    "activity-list": "/pages/template/activityList",
+    "text-new": "/pages/template/textNew",
+    "new-list": "/pages/template/newsList",
+    "big-cover": "/pages/template/bigCover",
+    "three-new": "/pages/template/three",
+    "has-con-new": "/pages/template/hasConNew"
+  }
+}

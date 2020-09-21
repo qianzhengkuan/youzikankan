@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "寺庙建设",
+  "usingComponents": {
+    "zc-top": "/pages/template/zc-top",
+    "panel-top": "/pages/template/panel-top",
+    "new-list": "/pages/template/newsList",
+    "three-new": "/pages/template/three",
+    "zc-three-img": "/pages/template/zc-threeImg"
+  }
+}

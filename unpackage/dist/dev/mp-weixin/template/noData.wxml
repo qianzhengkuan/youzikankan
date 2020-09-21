@@ -1,0 +1,1 @@
+<view class="noData flex-column flex-box flex-xy-center"><image class="noDataImg" src="../static/images/icon/noData.png" mode></image><text class="gray-text">没有找到相关内容~</text></view>

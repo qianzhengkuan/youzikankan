@@ -1,0 +1,1 @@
+<view class="panel-top flex-box flex-y-center"><view class="flex-1 title">{{title}}</view><navigator class="jiantouRight gray-text" url="{{url}}">{{rightText?rightText:'更多'}}</navigator></view>

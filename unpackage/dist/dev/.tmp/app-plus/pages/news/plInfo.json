@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "评论详情",
+  "usingComponents": {
+    "pinglun": "/pages/template/pinglun",
+    "pinglun-panel": "/pages/template/pinglun-panel"
+  }
+}

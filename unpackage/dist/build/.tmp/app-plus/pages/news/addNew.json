@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "yzkk-editor": "/pages/template/editor/editor",
+    "upload-img": "/pages/template/uploadImg"
+  }
+}

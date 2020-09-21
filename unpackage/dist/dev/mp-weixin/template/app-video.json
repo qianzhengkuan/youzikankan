@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "chunlei-video": "/pages/tabbar/components/chunlei-video/chunlei-video"
+  }
+}

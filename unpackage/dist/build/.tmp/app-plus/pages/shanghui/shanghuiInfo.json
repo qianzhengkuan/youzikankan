@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "商会详情",
+  "usingComponents": {
+    "panel-top": "/pages/template/panel-top",
+    "text-new": "/pages/template/textNew",
+    "new-list": "/pages/template/newsList",
+    "big-cover": "/pages/template/bigCover",
+    "three-new": "/pages/template/three",
+    "has-con-new": "/pages/template/hasConNew"
+  }
+}

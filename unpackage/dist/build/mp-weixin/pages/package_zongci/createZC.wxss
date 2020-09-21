@@ -1,0 +1,6 @@
+.sh-bg{height:358rpx;width:92%;margin:20rpx auto;background-image:url(/static/images/simiao.png);background-size:cover}.sh-bg .sh-bg-con{text-align:center}.sh-bg .sh-bg-con text{color:#fff;font-size:40rpx;font-weight:800}.form-list,
+.RealAuth{height:88rpx;padding:0rpx 30rpx;line-height:88rpx;-webkit-box-sizing:border-box;box-sizing:border-box;background-color:#fff}.form-list .label,
+.RealAuth .label{min-width:138rpx}.form-list .label text,
+.RealAuth .label text{font-size:30rpx;font-weight:800}.form-list input,
+.RealAuth input{text-align:right;font-size:30rpx}.form-list .state,
+.RealAuth .state{font-size:30rpx;margin-right:45rpx;color:#999}.uni-checkbox-input{border-radius:50%}.form-bottom{width:92%;margin:35rpx auto 21rpx auto}.form-bottom .sq-xieyi{margin-top:21rpx;font-size:28rpx}.form-bottom .sq-xieyi navigator{color:#06c}.joinNow{margin:25rpx auto}.InAudit{text-align:center}.InAudit image{width:180rpx;height:180rpx;margin-top:280rpx}.InAudit image.shenhezhong{width:475rpx;height:261rpx;margin-top:169rpx;margin-bottom:71rpx}.InAudit .title{width:82%;color:#e56361;font-size:36rpx;margin:0 auto;font-weight:800}.InAudit .label{width:82%;margin:0 auto;margin-top:30rpx;font-size:28rpx;color:#a7a7a7;line-height:42rpx}

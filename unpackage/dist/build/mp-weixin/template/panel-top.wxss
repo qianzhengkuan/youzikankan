@@ -1,0 +1,1 @@
+.panel-top{padding:30rpx 30rpx 15rpx 30rpx;-webkit-box-sizing:border-box;box-sizing:border-box;background-color:#fff}.panel-top .title{font-size:35rpx;font-weight:800}.panel-top .gray-text{font-size:23rpx;color:#838282;padding-right:30rpx}.panel-top .gray-text::after{top:45%;right:20rpx;border-color:#838282}

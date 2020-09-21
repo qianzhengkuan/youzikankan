@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///C:/Users/Administrator/Desktop/ccq/uni-yzkk/main.js"],"names":["createPage","Page"],"mappings":";;;;;;;;;;kDAAA;AACA;AACA,+F;AACAA,UAAU,CAACC,gBAAD,CAAV,C","file":"pages/vips/vipList.js","sourcesContent":["import 'uni-pages';\nimport Vue from 'vue'\nimport Page from './pages/vips/vipList.vue'\ncreatePage(Page)"],"sourceRoot":""}

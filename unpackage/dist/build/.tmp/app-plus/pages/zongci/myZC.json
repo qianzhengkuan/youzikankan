@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "我的宗祠",
+  "usingComponents": {
+    "panel-top": "/pages/template/panel-top",
+    "new-list": "/pages/template/newsList",
+    "four-list": "/pages/template/four-list",
+    "zc-three-img": "/pages/template/zc-threeImg"
+  }
+}

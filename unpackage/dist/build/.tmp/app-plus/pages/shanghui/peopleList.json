@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "商会成员",
+  "usingComponents": {
+    "shanghui": "/pages/template/shanghuiList"
+  }
+}

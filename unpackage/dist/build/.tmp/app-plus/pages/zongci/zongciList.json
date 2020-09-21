@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "古庙宇",
+  "usingComponents": {
+    "yzkk-image": "/pages/template/yzkk-image"
+  }
+}

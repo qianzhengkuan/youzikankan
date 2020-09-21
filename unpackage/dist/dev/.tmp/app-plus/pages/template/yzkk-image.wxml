@@ -1,0 +1,1 @@
+<view class="image data-v-754452e0"><image src="{{img}}" mode data-event-opts="{{[['error',[['showErrorImage',['$event']]]]]}}" binderror="__e" class="data-v-754452e0"></image></view>

@@ -1,0 +1,2 @@
+setCssToHead([".",[1],"page-body-info { padding-bottom: 0; height: ",[0,440],"; }\n",],undefined,{path:"./pages/template/choose-location.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/template/choose-location.wxml') } }));

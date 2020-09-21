@@ -1,0 +1,659 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		// #ifdef H5
+
+		{
+			"path": "pages/tabbar/index",
+			"style": {
+				"disableScroll": true,
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		// #endif
+		// #ifndef H5
+		{
+			"path": "pages/launch/launch",
+			"style": {
+				// "navigationStyle": "custom",
+				
+				"app-plus": {
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/tabbar/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		// #endif
+		{
+			"path": "pages/tabbar/zongci",
+			"style": {
+				"navigationStyle": "custom",
+				"app-plus": {
+					// 将回弹属性关掉
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/tabbar/shanghui",
+			"style": {
+				"navigationStyle": "custom",
+				"app-plus": {
+					// 将回弹属性关掉
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/tabbar/my",
+			"style": {
+				"navigationBarTitleText": "我的",
+				"navigationStyle": "custom",
+				"app-plus": {
+					// 将回弹属性关掉
+					"bounce": "none"
+				}
+			}
+		}
+
+		, {
+			"path": "pages/aboutUs/aboutUs",
+			"style": {
+				"navigationBarTitleText": "关于我们",
+				"app-plus": {
+					// 将回弹属性关掉
+					"bounce": "none"
+				}
+			}
+		}
+	    ,{
+            "path" : "pages/videoPlay/videoPlay",
+   //          "style" : {
+			// 	"navigationBarTitleText": "视频播放",
+			// 	"app-plus": {
+			// 		// 将回弹属性关掉
+			// 		"bounce": "none"
+			// 	}
+			// },
+			"style": {
+				"app-plus": {
+					"titleNView": false,
+					"bounce": "none"
+				}
+			}
+        }
+        ,{
+            "path" : "pages/videoPlayApp/videoPlayApp",
+            "style" : {
+				"app-plus": {
+					"titleNView": false,
+					"bounce": "none"
+				}
+			}
+        }
+    ],
+	"subPackages": [{
+			"root": "pages/package_zongci",
+			"pages": [{
+					"path": "myZC",
+					"style": {
+						"navigationBarTitleText": "我的宗祠",
+						"app-plus": {
+							// 将回弹属性关掉
+							"bounce": "none"
+						}
+					}
+				},
+				{
+					"path": "zongCiPeoList",
+					"style": {
+						"navigationBarTitleText": "全部僧人",
+						"app-plus": {
+							// 将回弹属性关掉
+							"bounce": "none"
+						}
+					}
+				},
+				{
+					"path": "zongciInfo",
+					"style": {
+						"navigationBarTitleText": "游子看看",
+						"app-plus": {
+							// 将回弹属性关掉
+							"bounce": "none"
+						}
+					}
+				},
+				{
+					"path": "zongciList",
+					"style": {
+						"navigationBarTitleText": "古庙宇",
+						"app-plus": {
+							// 将回弹属性关掉
+							"bounce": "none"
+						}
+					}
+				},
+				{
+					"path": "createZC",
+					"style": {
+						"navigationBarTitleText": "申请入驻古庙宇",
+						"app-plus": {
+							// 将回弹属性关掉
+							"bounce": "none"
+						}
+					}
+				},
+				{
+					"path": "realAuth",
+					"style": {
+						"navigationBarTitleText": "实名认证",
+						"app-plus": {
+							// 将回弹属性关掉
+							"bounce": "none"
+						}
+					}
+				},
+				{
+					"path": "newList",
+					"style": {
+						"navigationBarTitleText": "寺庙资讯",
+						"app-plus": {
+							// 将回弹属性关掉
+							"bounce": "none"
+						}
+					}
+				},
+				{
+					"path": "zongciCreate",
+					"style": {
+						"navigationBarTitleText": "寺庙建设",
+						"app-plus": {
+							// 将回弹属性关掉
+							"bounce": "none"
+						}
+					}
+				}
+			]
+		},
+		{
+			"root": "pages/package_shanghui",
+			"pages": [{
+					"path": "selectSH",
+					"style": {
+						"navigationBarTitleText": "选择商会",
+						"app-plus": {
+							// 将回弹属性关掉
+							"bounce": "none"
+						}
+					}
+				},
+				{
+					"path": "mySH",
+					"style": {
+						"navigationBarTitleText": "我的商会",
+						"app-plus": {
+							// 将回弹属性关掉
+							"bounce": "none"
+						}
+					}
+				},
+				{
+					"path": "shanghuiList",
+					"style": {
+						"navigationBarTitleText": "商会列表",
+						"app-plus": {
+							// 将回弹属性关掉
+							"bounce": "none"
+						}
+					}
+				},
+				{
+					"path": "shanghuiInfo",
+					"style": {
+						"navigationBarTitleText": "商会详情",
+						"app-plus": {
+							// 将回弹属性关掉
+							"bounce": "none"
+						}
+					}
+				},
+				{
+					"path": "peopleList",
+					"style": {
+						"navigationBarTitleText": "商会成员",
+						"app-plus": {
+							// 将回弹属性关掉
+							"bounce": "none"
+						}
+					}
+				},
+				{
+					"path": "peopleJianjie",
+					"style": {
+						"navigationBarTitleText": "商会简介",
+						"app-plus": {
+							// 将回弹属性关掉
+							"bounce": "none"
+						}
+					}
+				},
+				{
+					"path": "shanghuiJoin",
+					"style": {
+						"navigationBarTitleText": "加入商会",
+						"app-plus": {
+							// 将回弹属性关掉
+							"bounce": "none"
+						}
+					}
+				},
+				{
+					"path": "shanghuiSettled",
+					"style": {
+						"navigationBarTitleText": ""
+					}
+				},
+				{
+					"path": "newsList",
+					"style": {
+						"navigationBarTitleText": "商会资讯",
+						"app-plus": {
+							// 将回弹属性关掉
+							"bounce": "none"
+						}
+					}
+				}
+			]
+		},
+		{
+			"root": "pages/package_user",
+			"pages": [
+
+				{
+					"path": "vipList",
+					"style": {
+						"navigationBarTitleText": "会员管理",
+						"app-plus": {
+							// 将回弹属性关掉
+							"bounce": "none"
+						}
+					}
+				}, {
+					"path": "infoList",
+					"style": {
+						"navigationBarTitleText": "消息通知",
+						"app-plus": {
+							// 将回弹属性关掉
+							"bounce": "none"
+						}
+					}
+				}, {
+					"path": "myPrivate",
+					"style": {
+						"navigationBarTitleText": "私信",
+						"app-plus": {
+							// 将回弹属性关掉
+							"bounce": "none"
+						}
+					}
+				},
+				{
+					"path": "myFans",
+					"style": {
+						"navigationBarTitleText": "我的粉丝",
+						"app-plus": {
+							// 将回弹属性关掉
+							"bounce": "none"
+						}
+					}
+				},
+				{
+					"path": "myShouCang",
+					"style": {
+						"navigationBarTitleText": "我的收藏",
+						"app-plus": {
+							// 将回弹属性关掉
+							"bounce": "none"
+						}
+					}
+				},
+				{
+					"path": "myFabu",
+					"style": {
+						"navigationBarTitleText": "我的发布",
+						"app-plus": {
+							// 将回弹属性关掉
+							"bounce": "none"
+						}
+					}
+				},
+				{
+					"path": "setting",
+					"style": {
+						"navigationBarTitleText": "设置",
+						"app-plus": {
+							// 将回弹属性关掉
+							"bounce": "none"
+						}
+					}
+				},
+				{
+					"path": "feedback",
+					"style": {
+						"navigationBarTitleText": "用户反馈",
+						"app-plus": {
+							// 将回弹属性关掉
+							"bounce": "none"
+						}
+					}
+				},
+				{
+					"path": "history",
+					"style": {
+						"navigationBarTitleText": "浏览历史",
+						"app-plus": {
+							"bounce": "none",
+							"titleNView": {
+								"buttons": [{
+									"float": "right",
+									"fontSize": "15px",
+									"text": "清空"
+								}]
+							}
+						}
+					}
+				},
+				{
+					"path": "security",
+					"style": {
+						"navigationBarTitleText": "账号安全"
+					}
+				},
+				{
+					"path": "editPsdOrPhone",
+					"style": {
+						"navigationBarTitleText": ""
+					}
+				},
+				{
+					"path": "editUserInfo",
+					"style": {
+						"navigationBarTitleText": "个人资料"
+					}
+				},
+				{
+					"path": "myFollow",
+					"style": {
+						"navigationBarTitleText": "我的关注",
+						"app-plus": {
+							// 将回弹属性关掉
+							"bounce": "none"
+						}
+					}
+				},
+				{
+					"path": "userInfo",
+					"style": {
+						// #ifdef APP-PLUS || H5
+						"navigationBarTitleText": "作者信息",
+						"app-plus": {
+							"titleNView": {
+								"buttons": [{
+										"type": "share"
+									},
+									{
+										"type": "favorite"
+									}
+								]
+							}
+						}
+						// #endif
+					}
+				},
+				{
+					"path": "myActivity",
+					"style": {
+						"navigationBarTitleText": "我的活动",
+						"app-plus": {
+							// 将回弹属性关掉
+							"bounce": "none"
+						}
+					}
+				}
+			]
+		},
+		{
+			"root": "pages/package_activity",
+			"pages": [{
+				"path": "activityInfo",
+				"style": {
+					"navigationBarTitleText": "活动详情",
+					"app-plus": {
+						// 将回弹属性关掉
+						"bounce": "none"
+					}
+				}
+			}, {
+				"path": "activityJoin",
+				"style": {
+					"navigationBarTitleText": "活动报名",
+					"app-plus": {
+						// 将回弹属性关掉
+						"bounce": "none"
+					}
+				}
+			}, {
+				"path": "activityList",
+				"style": {
+					"navigationBarTitleText": "商会活动",
+					"app-plus": {
+						// 将回弹属性关掉
+						"bounce": "none"
+					}
+				}
+			}, {
+				"path": "activityAdd",
+				"style": {
+					"navigationBarTitleText": "发布活动",
+					"app-plus": {
+						// 将回弹属性关掉
+						"bounce": "none"
+					}
+				}
+			}]
+		},
+
+		{
+			"root": "pages/package_other",
+			"pages": [
+
+				{
+					"path": "login",
+					"style": {
+						"navigationStyle": "custom",
+						"app-plus": {
+							// 将回弹属性关掉
+							"bounce": "none"
+						}
+					}
+				},
+
+				{
+					"path": "forgetPsd",
+					"style": {
+						"navigationBarTitleText": "忘记密码",
+						"app-plus": {
+							// 将回弹属性关掉
+							"bounce": "none"
+						}
+					}
+				}, {
+					"path": "choose-location",
+					"style": {
+						"navigationBarTitleText": "选择地点",
+						"app-plus": {
+							// 将回弹属性关掉
+							"bounce": "none"
+						}
+					}
+				},
+				{
+					"path": "search",
+					"style": {
+						// #ifndef MP-WEIXIN
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "搜索",
+						"app-plus": {
+							// 将回弹属性关掉
+							"bounce": "none"
+						}
+					}
+				},
+				{
+					"path": "webview",
+					"style": {
+						"navigationBarTitleText": ""
+					}
+				},
+				{
+					"path": "userXY",
+					"style": {
+						"navigationBarTitleText": "用户协议",
+						"app-plus": {
+							// 将回弹属性关掉
+							"bounce": "none"
+						}
+					}
+				},
+				{
+					"path": "yszc",
+					"style": {
+						"navigationBarTitleText": "隐私政策",
+						"app-plus": {
+							// 将回弹属性关掉
+							"bounce": "none"
+						}
+					}
+				}
+			]
+		},
+		{
+			"root": "pages/package_new",
+			"pages": [{
+					"path": "newsInfo",
+					"style": {
+						"navigationBarTitleText": "",
+						"app-plus": {
+							"bounce": "none",
+							"titleNView": {
+								"buttons": [{
+									"type": "menu",
+									"float": "right"
+								}]
+							}
+						},
+						"h5": {
+							"titleNView": {
+								"type": "default"
+							}
+						}
+					}
+				},
+				{
+					"path": "plInfo",
+					"style": {
+						"navigationBarTitleText": "评论详情",
+						"app-plus": {
+							// 将回弹属性关掉
+							"bounce": "none"
+						}
+					}
+				},
+				{
+					"path": "addNew",
+					"style": {
+						"app-plus": {
+							"titleNView": false,
+							"bounce": "none"
+						}
+					}
+				},
+				{
+					"path": "photoInfo",
+					"style": {
+						"navigationBarTitleText": "图片详情",
+						"app-plus": {
+							// 将回弹属性关掉
+							"bounce": "none"
+						}
+					}
+				}
+			]
+		}
+	],
+	// "preloadRule": {
+	// 	"package_zongci/zongci": {
+	// 		"network": "all",
+	// 		"packages": ["tabbar/zongci"]
+	// 	},
+	// 	"package_shanghui": {
+	// 		"network": "all",
+	// 		"packages": ["tabbar/shanghui"]
+	// 	}
+	// },
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "",
+		"navigationBarBackgroundColor": "#ffffff",
+		"backgroundColor": "#F8F8F8",
+		"onReachBottomDistance": 0
+	},
+	"tabBar": {
+		"color": "#A8A8A8",
+		"selectedColor": "#C34944",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [{
+				"pagePath": "pages/tabbar/index",
+				"iconPath": "static/tabbar/shouye.png",
+				"selectedIconPath": "static/tabbar/shouye-2.png",
+				"text": "首页"
+			},
+			{
+				"pagePath": "pages/tabbar/zongci",
+				"iconPath": "static/tabbar/zongci.png",
+				"selectedIconPath": "static/tabbar/zongci-2.png",
+				"text": "宗祠"
+			},
+			{
+				"pagePath": "pages/tabbar/shanghui",
+				"iconPath": "static/tabbar/shanghui.png",
+				"selectedIconPath": "static/tabbar/shanghui-2.png",
+				"text": "商会"
+			},
+			{
+				"pagePath": "pages/tabbar/my",
+				"iconPath": "static/tabbar/wode.png",
+				"selectedIconPath": "static/tabbar/wode-2.png",
+				"text": "我的"
+
+			}
+		]
+	},
+	"condition": { //模式配置，仅开发期间生效
+		"current": 0, //当前激活的模式(list 的索引项)
+		"list": [{
+			"name": "", //模式名称
+			"path": "", //启动页面，必选
+			"query": "" //启动参数，在页面的onLoad函数里面得到
+		}]
+	}
+}

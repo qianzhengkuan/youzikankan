@@ -1,0 +1,1011 @@
+<template>
+	<!-- #ifndef APP-NVUE -->
+	<div class="content" @touchstart="refreshStart" @touchmove="refreshMove" @touchend="refreshEnd">
+		<!-- #endif -->
+		<!-- #ifdef APP-NVUE -->
+		<div class="content">
+			<!-- #endif -->
+			<view class="status" :style="{height:statusBarHeight+'wx'}"></view>
+			<view class="fixed-top">
+				<view class="search-wrap">
+					<navigator class="href-input" url="../package_other/search">
+						<image class="search-icon" src="../../static/images/icon/sousuo-01.png" mode=""></image>
+						<text class="gray-text">文章...</text>
+					</navigator>
+					<!-- #ifndef MP-WEIXIN -->
+					<image class="msg-icon" src="../../static/images/icon/xinx.png" mode="" @click="toAboutus()"></image>
+					<!-- #endif -->
+				</view>
+				<scroll-view :scroll-x="true" :show-scrollbar="false" :scroll-into-view="scrollInto" class="nav-scroll "
+				 :scroll-with-animation="true">
+					<view v-for="(tab,index) in tabBars" :key="tab.keyId" class="uni-tab-item " :id="tab.keyId" :data-current="index"
+					 @click="switchTab(index)">
+						<text class="uni-tab-item-title" :class="tabIndex==index ? 'uni-tab-item-title-active' : ''">{{tab.name}}</text>
+					</view>
+				</scroll-view>
+			</view>
+			<!-- h5刷新 -->
+			<!-- #ifndef APP-NVUE -->
+			<refresh ref="refresh" @isRefresh='onRefresh'></refresh>
+			<!-- #endif -->
+			<swiper class="swiper-box" :duration="300" :current="tabIndex" @change="ontabchange">
+				<swiper-item v-for="(tab,index1) in newsList" :key="index1">
+					<!-- #ifdef APP-NVUE -->
+					<list class="list" :loadmoreoffset="150" @loadmore="listLoadMore" :scrollable="true" :show-scrollbar="false">
+						<ccq-refresh :refresh-text="refreshText" @refresh="onRefresh" ref="ccqRefresh"></ccq-refresh>
+
+						<cell v-for="(item, index) in tab.data" :key="index" class="list-item" v-if="tabBars[index1].id!=1 && tabBars[index1].id!=6 && tabBars[index1].id!=7">
+							<text-new v-if="item.type==1" :newsData="item"></text-new>
+							<new-list v-if="item.type==2" :newsData="item" :textOver2="true" :isReverse="true"></new-list>
+							<big-cover v-if="item.type==3" :hasBottom="true" :coverData="item"></big-cover>
+							<three-new v-if="item.type==4" :threeData="item"></three-new>
+						</cell>
+						<cell v-if="tabBars[index1].id==1" v-for="(item,index) in photoData" :key="index">
+							<yzkk-photo :photoInfo="item"></yzkk-photo>
+						</cell>
+						<!-- 视频 -->
+						<cell v-if="tabBars[index1].id==6" v-for="(item,index) in videoData" :key="index">
+							<!-- <chunlei-video  :title="item.title" :srcList="item.file" :poster="item.image" class="video" ref="video" color="#c93756"></chunlei-video> -->
+							<!-- <chunlei-video title="简洁版视频测试" srcList="https://chousha.oss-cn-shenzhen.aliyuncs.com/youzikankan/20200617/dacfb15500dbc9c342781e2434d4555e3acb038d.mp4" class="video" ref="video" color="#c93756">
+							 </chunlei-video> -->
+							<!-- <app-video ref="appVideo" @stopOther="stopOther(index)" :videoInfo="item"></app-video> -->
+							<view class="v-wrap" @tap="clickvideo(item.id)" style="z-index:9999999;">
+								<!-- #ifndef APP-NVUE -->
+								<text class="v-tile text-over">{{item.title}}</text>
+								<!-- #endif -->
+								<chunlei-video ref='video' @stopOther="stopOther(index)" @stopHide="stopHide(index)" :title="item.title"
+								 :srcList="item.file" :poster="item.image" class="video" :gDuration="item.filetime"></chunlei-video>
+								<!-- #ifdef APP-NVUE -->
+								<text class="app-v-title">{{item.title}}</text>
+								<!-- #endif -->
+								<view class="v-bottom flex-box flex-y-center">
+									<view class="flex-1 flex-box flex-y-center u-info">
+										<image class="headImg" :src="item.author_avatar" mode=""></image>
+										<text class="v-author">{{item.nickname}}</text>
+									</view>
+									<text class="time-text">{{item.createtime}}</text>
+								</view>
+							</view>
+						</cell>
+
+						<cell v-if="tabBars[index1].id==7" v-for="(item,index) in activityData" :key="index">
+							<activityList :shData="item"></activityList>
+						</cell>
+						<noMore v-if="tab.noMore"></noMore>
+						<noData v-if="!tab.data.length && tabBars[index1].id!=1  && tabBars[index1].id!=6 && tabBars[index1].id!=7"></noData>
+						<noData v-if="!photoData.length && tabBars[index1].id==1"></noData>
+						<noData v-if="!videoData.length && tabBars[index1].id==6"></noData>
+						<noData v-if="!activityData.length && tabBars[index1].id==7"></noData>
+						<!-- 加载中 -->
+						<!-- <cell style="justify-content: center;align-items: center;"  v-if="isLoads">
+							<text style="font-size: 30rpx;color: #C34944;padding-top: 100rpx;">加载中...</text>
+						</cell> -->
+						<!-- 	<cell  style="justify-content: center;align-items: center;" v-if="isLoads">
+							<image class="" src="../../common/mixin/5-130H2191322-52.gif" mode="" style="width: 80rpx;height: 80rpx;" ></image>
+						</cell> -->
+					</list>
+					<!-- #endif -->
+
+					<!-- #ifndef APP-NVUE -->
+					<scroll-view class="scroll-v flex-1" enableBackToTop="true" :lower-threshold="150" scroll-y="true" style="height: 100%;"
+					 @scrolltolower="listLoadMore">
+						<view v-for="(item,index2) in tab.data" :key="index2" v-if="tabBars[index1].id!=1 && tabBars[index1].id!=6 && tabBars[index1].id!=7">
+							<text-new v-if="item.type==1" :newsData="item"></text-new>
+							<new-list v-if="item.type==2" :newsData="item" :textOver2="true" :isReverse="true"></new-list>
+							<!-- 大封面 -->
+							<big-cover v-if="item.type==3" :hasBottom="true" :coverData="item"></big-cover>
+							<!-- 三张图片 -->
+							<three-new v-if="item.type==4" :threeData="item"></three-new>
+						</view>
+						<!-- 图片-->
+						<view v-if="tabBars[index1].id==1">
+							<view v-for="(item,index) in photoData" :key="index">
+								<yzkk-photo ref="yzkkPhotoSwiper" :id="item.id" :seePhotoList="seePhotoList" :photoInfo="item"></yzkk-photo>
+							</view>
+						</view>
+						<!-- 视频-->
+						<view v-if="tabBars[index1].id==6">
+							<view v-for="(item,v_i) in videoData" :key="v_i">
+								<yzkk-video ref="yzkkVideo" @stopOther="stopOther(v_i)" :videoInfo="item"></yzkk-video>
+								<!-- <videoNvue /> -->
+							</view>
+						</view>
+						<!-- 活动-->
+						<view v-if="tabBars[index1].id==7">
+							<view v-for="(item,index) in activityData" :key="index">
+								<activityList :shData="item"></activityList>
+							</view>
+						</view>
+						<noMore v-if="tab.noMore"></noMore>
+						<noData v-if="!tab.data.length && tabBars[index1].id!=1  && tabBars[index1].id!=6 && tabBars[index1].id!=7"></noData>
+						<noData v-if="!photoData.length && tabBars[index1].id==1"></noData>
+						<noData v-if="!videoData.length && tabBars[index1].id==6"></noData>
+						<noData v-if="!activityData.length && tabBars[index1].id==7"></noData>
+						<!-- <cell  class="start hv100" style="" v-if="tab.data.length < 10">
+							<image class="git start-img" src="../../common/mixin/5-130H2191322-52.gif" mode="" ></image>
+						</cell> -->
+					</scroll-view>
+					<!-- #endif -->
+				</swiper-item>
+
+			</swiper>
+
+			<!-- 用户协议、隐私政策弹窗 -->
+			<!-- #ifndef H5 -->
+			<!-- 	<div class="wrapBg" v-if="disLoad"  @touchmove.stop.prevent>
+				<div class="dialog" v-if="disLoad">
+					<div class="d-top">温馨提示</div>
+					<div class="d-body">
+						<text class="d-b-text"> 请充分阅读并理解后，点击下方的按钮已接受我们的服务： </text>
+						<text class="d-b-text"> 1、在浏览使用时，我们会收集、使用设备标示信息用于推荐。</text>
+						<text class="d-b-text"> 2、我们可能会申请位置权限，用户向您展示丰富的信息推荐维度。 </text>
+						<view class="d-b-view">
+							<text class="d-b-text">3、查看完整版</text>
+							<text class="d-b-nav" @click="navGo('../package_other/userXY')">“用户协议”</text>
+							<text class="d-b-text">和</text>
+							<text class="d-b-nav" @click="navGo('../package_other/yszc')">“隐私政策”</text>
+						</view>
+					</div>
+					<div class="d-footer">
+						<button type="default" class="d-f-btn" @click="closeDialog">
+							<text class="d-f-text">我知道了</text>
+						</button>
+					</div>
+				</div>
+			</div> -->
+			<!-- #endif -->
+		</div>
+</template>
+
+<script>
+	import loading from "@/common/mixin/loading.js"
+	// #ifndef APP-NVUE
+	import refresh from './components/refresh.vue'
+	// #endif
+	import ccqRefresh from './components/ccq-refresh/ccq-refresh.nvue';
+	import ccqLoadMore from './components/ccq-refresh/ccq-load-more.nvue';
+	import newList from "@/template/newsList.vue"
+	import textNew from "@/template/textNew.vue"
+	import threeNew from "@/template/three.vue"
+	import bigCover from "@/template/bigCover.vue"
+	import yzkkVideo from "@/template/video.vue"
+	import activityList from "@/template/activityList.vue"
+	import yzkkPhoto from "@/template/photos.vue"
+	import noMore from '@/template/noMore.vue'
+	import noData from '@/template/noData.vue'
+	import apiJs from '@/common/api.js'
+	import commonJs from '@/common/common.js'
+	import appVideo from "@/template/app-video.nvue"
+	import chunleiVideo from './components/chunlei-video/chunlei-video.nvue'
+
+	export default {
+		mixins: [loading],
+		components: {
+			// #ifndef APP-NVUE
+			refresh,
+			// #endif
+			ccqRefresh,
+			ccqLoadMore,
+			newList,
+			textNew,
+			threeNew,
+			bigCover,
+			yzkkVideo,
+			activityList,
+			yzkkPhoto,
+			noMore,
+			noData,
+			appVideo,
+			chunleiVideo
+
+		},
+		data() {
+			return {
+				statusBarHeight: '',
+				refreshText: ['下拉刷新', '释放更新', '刷新中...', '刷新成功'],
+				loadMoreText: ['上拉加载更多', '加载中...', '没有更多啦'],
+				testData: 20,
+				tabIndex: 0,
+				homeApi: apiJs,
+				commonJs: commonJs,
+				tabBars: [],
+				newsList: [],
+				photoData: [],
+				videoData: [],
+				activityData: [],
+				scrollInto: "",
+				seePhotoList: [],
+				disLoad: false,
+				firstList: [], //第一页数据
+				isLoads: true,
+				upList: false,
+				videoRecordcount:0,//视频总条数
+			};
+		},
+
+		onLoad() {
+
+			// #ifdef APP-NVUE
+			uni.request({
+				url: 'http://www.youzikankan.com/api/v1/getVersionApi',
+				// url: 'http://testfas.youzikankan.com/api/v1/getVersionApi',
+				method: 'GET',
+				header: {
+					'Content-Type': 'application/json'
+				},
+				success: (res) => {
+					// console.log(res)
+					var data = res.data.data;
+					// console.log(data)
+					var vs = 1.26
+					var version = data.version
+					// console.log(Number(version))
+					var content = data.content
+					var iosUrl = data.ios_url
+					var androidUrl = data.android_url
+					if (Number(vs) < Number(version)) {
+						uni.showModal({
+							title: '发现新版本',
+							content: '1.【优化】产品性能\n2.【修复】一些已知Bug',
+							cancelText: '放弃更新',
+							confirmText: '立即更新',
+							success: res => {
+								if (res.confirm) {
+									let platform = uni.getSystemInfoSync().platform
+									if (platform == 'ios') {
+										plus.runtime.openURL(iosUrl)
+									} else if (platform == 'android') {
+										plus.runtime.openURL(androidUrl)
+									}
+								} else if (res.cancel) {
+									plus.runtime.quit()
+									// plus.ios.import("UIApplication").sharedApplication().performSelector("exit")
+								}
+
+							}
+						});
+					}
+				},
+			})
+			// #endif
+		},
+		//暂停视频播放
+		onHide() {
+			var that = this
+			this.stopOther()
+		},
+		methods: {
+			// 点击视频
+			clickvideo(id) {
+				// console.log(id)
+				// uni.getStorage({
+				// 		key:"videoList",
+				// 		success:(res)=>{
+				// 			console.log(res)
+				// 		if (res.data) {
+				// 			let result = JSON.parse(res.data)
+				// 			console.log(result)
+				// 			 console.log(result[0].page)
+				// 			  console.log(result[0].videoId)
+				// 			 var idlist = result[0].videoId
+				// 			 let news1 = idlist.filter(obj=>obj.id == id)
+				// 			 console.log(news1)
+				// 			 var page = result[0].page
+				// 			 console.log(page)
+							 
+				// 			 uni.navigateTo({
+				// 			 	url: "/pages/videoPlayApp/videoPlayApp?id=" + id + '&page=' + page,
+				// 			 })
+				// 			}
+				// 	})
+					
+				var page = this.newsList[this.tabIndex].pageObj.page - 1
+				uni.navigateTo({
+					url: "/pages/videoPlayApp/videoPlayApp?id=" + id + '&page=' + page,
+					// url: "/pages/videoPlay/videoPlay?id=" + id + '&page=' + page,
+				})
+			},
+			toAboutus() {
+				uni.navigateTo({
+					url: '../aboutUs/aboutUs'
+				})
+			},
+			// #ifdef H5
+			stopOther(i) {
+				var that = this
+				// console.log(i)
+				that.videoData.forEach((item, index) => {
+					if (index != i) {
+						that.$refs.yzkkVideo[index].videoPause();
+					}
+				})
+			},
+			// #endif
+
+			// #ifdef APP-NVUE
+			stopOther(i) {
+				var that = this
+				that.videoData.forEach((item, index) => {
+					if (index != i) {
+						that.$refs.video[index].pause();
+					}
+				})
+
+			},
+			// #endif
+			navGo(u) {
+				uni.navigateTo({
+					url: u
+				})
+			},
+			showDislog() {
+				// console.log(uni.getStorageSync('appDialog'));
+				if (uni.getStorageSync('appDialog')) {
+					this.disLoad = true;
+				}
+			},
+			closeDialog() {
+				this.disLoad = false;
+				uni.setStorageSync('appDialog', true);
+				// console.log(uni.getStorageSync('appDialog'));
+			},
+			getTypes() {
+				this.homeApi.getIndexColumn().then(res => {
+					res.forEach((item) => {
+						this.tabBars.push({
+							name: item.nickname,
+							id: item.id,
+							keyId: 'tab' + item.id
+						})
+						this.newsList.push({
+							data: [],
+							pageObj: {
+								page: 1,
+								pagecount: 1
+							},
+							isLoading: false,
+							noMore: false
+						});
+					});
+				}).then(() => {
+					this.getAllList(this.tabBars[0].id);
+
+				})
+			},
+
+
+			// 获取所有资讯列表
+			getAllList(id, isRefresh, isMore) {
+				var i = this.tabIndex;
+				var that = this;
+				that.homeApi.getAllNewList({
+					page: that.newsList[i].pageObj.page,
+					category_id: id || '',
+				}).then(res => {
+					// console.log(res)
+					var nowData = that.newsList[i].data;
+					var r_data = res.backlist;
+					that.firstList = res.backlist
+					that.isLoads = false
+					r_data.map((item) => {
+						//先设置游子看看发布平台数据为空
+						// item.user_name = ""
+						if (item.img.length && item.img) {
+							item.cover = item.img[0].url
+						} else {
+							item.cover = errorImg
+						}
+						item.time = that.commonJs.timeFormat.noYearFormat(item.create_time);
+					});
+
+					if (isRefresh) {
+						that.newsList[i].data = r_data;
+						// #ifndef APP-NVUE
+						this.$refs.refresh.endAfter() //刷新结束调用
+						// #endif
+						// #ifdef APP-NVUE
+						this.$refs.ccqRefresh[i].finish();
+						// #endif
+					} else {
+						// this.newsList[0].data = nowData.concat(r_data);
+						that.newsList[i].data = nowData.concat(r_data);
+					}
+					that.newsList[i].pageObj.page = Number(res.page) + 1;
+					that.newsList[i].pageObj.pagecount = res.pagecount;
+					if (Number(res.page) == res.pagecount) {
+						that.newsList[i].noMore = true;
+						console.log(that.tabBars[i].name + '-----没有更多了');
+					}
+					if (isMore) {
+						that.newsList[i].isLoading = false;
+					}
+				})
+			},
+			// 获取图片
+			getPhotoList(isRefresh, isMore) {
+				var that = this;
+				var i = this.tabIndex;
+				this.homeApi.getPictureList({
+					page: this.newsList[i].pageObj.page
+				}).then(res => {
+					console.log(res)
+					var nowData = this.photoData;
+					if (!res) {
+						if (isRefresh) {
+							// #ifndef APP-NVUE
+							this.$refs.refresh.endAfter() //刷新结束调用
+							// #endif
+							// #ifdef APP-NVUE
+							this.$refs.ccqRefresh[i].finish();
+							// #endif
+						}
+						return;
+					};
+					var r_data = res.backlist;
+					r_data.map((item) => {
+						//先设置游子看看发布平台数据为空
+						// item.nickname = ""
+						item.createtime = that.commonJs.timeFormat.noYearFormat(item.createtime);
+					})
+					if (isRefresh) {
+						// #ifndef APP-NVUE
+						this.$refs.refresh.endAfter() //刷新结束调用
+						// #endif
+						// #ifdef APP-NVUE
+						this.$refs.ccqRefresh[i].finish();
+						// #endif
+						this.photoData = r_data
+					} else {
+						this.photoData = nowData.concat(r_data);
+					}
+					this.newsList[i].pageObj.page = Number(res.page) + 1;
+					this.newsList[i].pageObj.pagecount = res.pagecount;
+					if (Number(res.page) == res.pagecount) {
+						this.newsList[i].noMore = true;
+					}
+					if (isMore) {
+						this.newsList[i].isLoading = false;
+					}
+				}).then(() => {
+					// this.photoData.forEach((item,index)=>{
+					// 	this.homeApi.getPictureDetail({
+					// 		id: item.id
+					// 	}).then(r => {
+					// 		this.$refs.yzkkPhotoSwiper[index].setList(r.images)
+					// 	})
+					// })
+				})
+			},
+			// 获取视频
+			getVideoList(isRefresh, isMore) {
+				var that = this;
+				var i = this.tabIndex;
+				this.homeApi.getVideoList({
+					page: this.newsList[i].pageObj.page
+				}).then(res => {
+					
+					var nowData = this.videoData;
+					
+					if (!res) {
+						if (isRefresh) {
+							// #ifndef APP-NVUE
+							this.$refs.refresh.endAfter() //刷新结束调用
+							// #endif
+							// #ifdef APP-NVUE
+							this.$refs.ccqRefresh[i].finish();
+							// #endif
+						}
+						return;
+					};
+					var r_data = res.backlist;
+					r_data.map((item) => {
+						//先设置游子看看发布平台数据为空  
+						// item.nickname = ""
+						item.createtime = that.commonJs.timeFormat.noYearFormat(item.createtime);
+						
+					})
+					if (isRefresh) {
+						// #ifndef APP-NVUE
+						this.$refs.refresh.endAfter() //刷新结束调用
+						// #endif
+						// #ifdef APP-NVUE
+						this.$refs.ccqRefresh[i].finish();
+						// #endif
+						this.videoData = r_data
+					} else {
+						this.videoData = nowData.concat(r_data);
+						
+					}
+					this.newsList[i].pageObj.page = Number(res.page) + 1;
+					this.newsList[i].pageObj.pagecount = res.pagecount;
+					if (Number(res.page) == res.pagecount) {
+						this.newsList[i].noMore = true;
+					}
+					if (isMore) {
+						this.newsList[i].isLoading = false;
+					}
+				    
+					// 保存为本地存储
+					let videoArry = []
+					let obj ={
+						page:res.page,
+						videoId:res.backlist
+						}
+				    videoArry.push(obj)
+		
+					uni.setStorage({
+						key:'videoList',
+						data:JSON.stringify(videoArry)
+					  })
+					
+				})
+			},
+			// 获取活动
+			getActivityList(isRefresh, isMore) {
+				var that = this;
+				var i = this.tabIndex;
+				this.homeApi.getChamberActivityList({
+					page: this.newsList[i].pageObj.page
+				}).then(res => {
+					var nowData = this.activityData;
+					var r_data = res.backlist;
+					r_data.map((item) => {
+						// item.start_time = that.commonJs.timeFormat.noYearFormat(item.start_time);
+						item.end_time = that.commonJs.timeFormat.noYearFormat(item.end_time, 1);
+					})
+					if (isRefresh) {
+						// #ifndef APP-NVUE
+						this.$refs.refresh.endAfter() //刷新结束调用
+						// #endif
+						// #ifdef APP-NVUE
+						this.$refs.ccqRefresh[i].finish();
+						// #endif
+						this.activityData = r_data
+					} else {
+						this.activityData = nowData.concat(r_data);
+					}
+					this.activityData = nowData.concat(r_data);
+					this.newsList[i].pageObj.page = Number(res.page) + 1;
+					this.newsList[i].pageObj.pagecount = res.pagecount;
+					if (Number(res.page) == res.pagecount) {
+						this.newsList[i].noMore = true;
+					}
+					if (isMore) {
+						this.newsList[i].isLoading = false;
+					}
+				})
+			},
+			onRefresh() {
+				var that = this;
+				var i = that.tabIndex;
+				// console.log('下拉刷新' + that.tabBars[i].name);
+				that.newsList[i].pageObj.page = 1;
+				that.newsList[i].pageObj.pagecount = 1;
+				that.newsList[i].noMore = false;
+				that.newsList[i].isLoading = true;
+				var nid = that.tabBars[i].id;
+				if (nid != 1 && nid != 6 && nid != 7) {
+					that.getAllList(nid, 1);
+				} else {
+					if (nid == 1) {
+						that.getPhotoList(1);
+					} else if (nid == 6) {
+						that.getVideoList(1);
+					} else {
+						that.getActivityList(1);
+					}
+				}
+			},
+			listLoadMore() {
+				var that = this;
+				var i = that.tabIndex;
+				// console.log('list---得到更多' + that.tabBars[i].name);
+				if (that.newsList[i].noMore == true) {
+					return
+				}
+				var nid = that.tabBars[i].id;
+				if (nid != 1 && nid != 6 && nid != 7) {
+					that.getAllList(nid, 0, 1);
+				} else {
+					if (nid == 1) {
+						that.getPhotoList(0, 1);
+					} else if (nid == 6) {
+						
+						that.getVideoList(0, 1);
+					} else {
+						that.getActivityList(0, 1);
+					}
+				}
+			},
+			refreshStart(e) {
+				this.$refs.refresh.refreshStart(e);
+			},
+			refreshMove(e) {
+				this.$refs.refresh.refreshMove(e);
+			},
+			refreshEnd(e) {
+				this.$refs.refresh.refreshEnd(e);
+			},
+			onLoadMore() {
+				var that = this;
+				var i = this.tabIndex;
+				console.log('得到更多' + this.tabBars[i].name);
+				// 没有更多了
+				// this.$refs.ccqLoadMore.finish(false);
+				var nid = this.tabBars[this.tabIndex].id;
+				if (nid != 1 && nid != 6 && nid != 7) {
+					this.getAllList(nid, 0, 1);
+				} else {
+					if (nid == 1) {
+						this.getPhotoList(0, 1);
+					} else if (nid == 6) {
+						
+						this.getVideoList(0, 1);
+					} else {
+						this.getActivityList(0, 1);
+					}
+				}
+			},
+			ontabchange(e) {
+				let index = Number(e.detail.current);
+				this.switchTab(index);
+			},
+			// 点击tab切换
+			switchTab(i) {
+				var that = this;
+				// 暂停视频播放
+				that.stopOther()
+
+				if (this.tabIndex === i) {
+					return;
+				}
+				this.tabIndex = i;
+				var nid = this.tabBars[i].id;
+				if (this.newsList[this.tabIndex].data.length === 0 && nid != 1 && nid != 6 && nid != 7) {
+					that.getAllList(nid);
+				} else {
+					if (nid == 1) {
+						this.getPhotoList();
+					} else if (nid == 6) {
+						this.getVideoList();
+					} else {
+						this.getActivityList();
+					}
+				}
+				this.scrollInto = this.tabBars[i].keyId;
+			},
+			setStatusHei() {
+				let _t = this;
+				uni.getSystemInfo({
+					success: function(res) {
+						_t.statusBarHeight = res.statusBarHeight;
+					}
+				});
+			}
+		},
+		mounted() {
+			this.getTypes();
+			this.setStatusHei();
+			this.showDislog();
+		}
+	}
+</script>
+
+<style lang="scss">
+	.content {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		height: calc(94vh - var(--window-bottom));
+		/* #endif */
+		flex-direction: column;
+		flex: 1;
+	}
+
+	/* #ifdef APP-NVUE  || MP-WEIXIN */
+	.status {
+		background-color: $yzkk-theme-color;
+	}
+
+	/* #endif */
+
+	/* 顶部固定 */
+	.fixed-top {
+		/* #ifndef APP-NVUE || MP-WEIXIN */
+		position: fixed;
+		top: 0;
+		z-index: 999;
+		left: 0;
+		width: 100%;
+		/* #endif */
+	}
+
+	.search-wrap {
+		align-items: center;
+		height: 88rpx;
+		padding-bottom: 14rpx;
+		padding-left: 30rpx;
+		padding-right: 30rpx;
+		padding-top: 14rpx;
+		background-color: #c34944;
+		flex-direction: row;
+	}
+
+	.href-input {
+		background-color: #f0eff4;
+		height: 60rpx;
+		border-radius: 40rpx;
+
+		// #ifdef APP-NVUE || H5
+		flex: 1;
+		// #endif
+		// #ifdef MP-WEIXIN
+		width: 502rpx;
+		// #endif
+		flex-direction: row;
+		align-items: center;
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+	}
+
+	.search-icon {
+		width: 28rpx;
+		height: 28rpx;
+		margin: 0 19rpx;
+	}
+
+	.gray-text {
+		font-size: 24rpx;
+	}
+
+	.msg-icon {
+		width: 38rpx;
+		height: 30rpx;
+		margin-left: 48rpx;
+	}
+
+
+	/* 顶部可拖动 */
+	.nav-scroll {
+		height: 80rpx;
+		background-color: #ffffff;
+		/* #ifndef APP-NVUE */
+		white-space: nowrap;
+		/* #endif */
+		z-index: 999;
+		flex-direction: row;
+		border-bottom-width: 1rpx;
+		border-bottom-style: solid;
+		border-bottom-color: #dee2e6;
+	}
+
+	.uni-tab-item {
+		/* #ifndef APP-NVUE */
+		display: inline-block;
+		/* #endif */
+		flex-wrap: nowrap;
+		padding-left: 34rpx;
+		padding-right: 10rpx;
+		text-align: center;
+		line-height: 80rpx;
+		border-bottom-width: 1rpx;
+		border-bottom-style: solid;
+		border-bottom-color: #dee2e6;
+	}
+
+	.uni-tab-item-title {
+		color: #555;
+		font-size: 36rpx;
+		height: 80rpx;
+		line-height: 80rpx;
+		flex-wrap: nowrap;
+		/* #ifndef APP-NVUE */
+		white-space: nowrap;
+		/* #endif */
+	}
+
+	.uni-tab-item-title-active {
+		color: #C34944;
+		font-size: 41rpx;
+	}
+
+	.swiper-box {
+		/* #ifndef APP-NVUE  || MP-WEIXIN */
+		height: calc(100vh - 176rpx - var(--window-bottom));
+		top: 88rpx;
+		/* #endif */
+		/* #ifdef APP-NVUE  || MP-WEIXIN */
+		flex: 1;
+		/* #endif */
+	}
+
+	.list {
+		flex: 1;
+	}
+
+	.list-item {
+		position: relative;
+
+	}
+
+	/* 视频 */
+	.nvue-video {
+		/* width: 100%; */
+	}
+
+	// 用户协议弹窗
+
+	.wrapBg {
+		position: fixed;
+		width: 750rpx;
+		height: 2000rpx;
+		flex: 1;
+		background-color: rgba(0, 0, 0, .5);
+		bottom: 0;
+		left: 0;
+		z-index: 1000;
+		// display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.dialog {
+		width: 600rpx;
+		z-index: 1001;
+		padding: 30rpx;
+		background-color: #FFFFFF;
+		border-radius: 10rpx;
+	}
+
+	.d-top {
+		font-size: 36rpx;
+		text-align: center;
+		flex-direction: row;
+		justify-content: center;
+	}
+
+	.d-body {
+		flex: 1;
+		height: 300rpx;
+		margin-top: 16rpx;
+	}
+
+	.d-b-view {
+		flex-direction: row;
+		flex-wrap: wrap;
+	}
+
+	.d-b-text {
+		font-size: 30rpx;
+		line-height: 40rpx;
+		flex-direction: row;
+		justify-content: flex-start;
+		align-items: flex-start;
+	}
+
+	.d-b-nav {
+		// display: inline-flex;
+		color: #0066CC;
+		font-size: 30rpx;
+	}
+
+	.d-footer {
+		margin-top: 16rpx;
+	}
+
+	.d-f-btn {
+		height: 70rpx;
+		line-height: 70rpx;
+		text-align: center;
+		background-color: $yzkk-theme-color;
+		border-color: #FFFFFF;
+	}
+
+	.d-f-text {
+		color: #FFFFFF;
+		font-size: 34rpx;
+	}
+
+	.v-wrap {
+		position: relative;
+		background-color: #000000;
+	}
+
+	.cover-view {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 750rpx;
+		height: 450rpx;
+		z-index: 2;
+		justify-content: center;
+		align-items: center;
+		// #ifndef APP-NVUE
+		display: flex;
+		// #endif
+	}
+
+	.playIcon {
+		width: 80rpx;
+		height: 80rpx;
+		border-radius: 50%;
+		background-color: rgba(0, 0, 0, .5);
+	}
+
+	.playIcon-img {
+		width: 80rpx;
+		height: 80rpx;
+	}
+
+	.v-tile {
+		color: #FFFFFF;
+		font-size: 32rpx;
+		width: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		padding: 20rpx 20rpx 0 20rpx;
+		z-index: 2;
+		background-color: transparent;
+	}
+
+	.video-dom {
+		width: 750rpx;
+		position: relative;
+	}
+
+	.icon {
+		position: absolute;
+		bottom: 10px;
+		right: 10px;
+	}
+
+	.v-bottom {
+		background-color: #FFFFFF;
+		padding: 20rpx;
+		flex-direction: row;
+		align-items: center;
+		flex: 1;
+	}
+
+	.app-v-title {
+		width: 750rpx;
+		position: absolute;
+		top: 0;
+		left: 0;
+		padding: 18rpx;
+		color: #FFFFFF;
+		font-size: 36rpx;
+		lines: 1;
+		text-overflow: ellipsis;
+	}
+
+	.u-info {
+		flex-direction: row;
+		flex: 1;
+		align-items: center;
+	}
+
+	.headImg {
+		width: 80rpx;
+		height: 80rpx;
+		border-radius: 50%;
+		margin-right: 18rpx;
+	}
+
+	.v-author {
+		font-size: 30rpx;
+	}
+
+	.share-icon {
+		width: 40rpx;
+		height: 40rpx;
+		margin-right: 20rpx;
+	}
+
+	.time-text {
+		font-size: 28rpx;
+		color: #999999;
+	}
+</style>

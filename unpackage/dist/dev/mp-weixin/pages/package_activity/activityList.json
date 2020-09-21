@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "商会活动",
+  "usingComponents": {
+    "activity-list": "/template/activityList"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "寺庙建设",
+  "usingComponents": {
+    "zc-top": "/pages/package_zongci/template/zc-top",
+    "panel-top": "/template/panel-top",
+    "new-list": "/template/newsList",
+    "three-new": "/template/three",
+    "zc-three-img": "/pages/package_zongci/template/zc-threeImg"
+  }
+}

@@ -1,0 +1,1 @@
+<view class="container"><view class="list-wrap"><block wx:for="{{shList}}" wx:for-item="item" wx:for-index="index" wx:key="index"><view><zc-people vue-id="{{'7f54be6a-1-'+index}}" isPeople="{{true}}" shData="{{item}}" bind:__l="__l"></zc-people></view></block><block wx:if="{{noMore}}"><no-more vue-id="7f54be6a-2" bind:__l="__l"></no-more></block></view></view>

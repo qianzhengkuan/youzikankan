@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "chun-lei-slider": "/pages/tabbar/components/chunlei-video/chunLei-slider/chunLei-slider",
+    "chun-lei-moon": "/pages/tabbar/components/chunlei-video/chunLei-moon/chunLei-moon"
+  }
+}
